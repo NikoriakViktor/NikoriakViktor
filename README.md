@@ -1,10 +1,16 @@
 <!-- 01 — Identity -->
-<img src="./assets/hero.svg" alt="Viktor Nikoriak — Research Software Engineer. Full-Stack Development · AI/ML · GeoAI · Scientific Computing" width="100%">
+<a href="https://geohydroai.org/about/viktor-nikoriak"><img src="./assets/hero.svg" alt="Viktor Nikoriak — Research Software Engineer. Full-Stack Development · AI/ML · GeoAI · Scientific Computing" width="100%"></a>
 
-I build end-to-end scientific and AI systems — from field measurements and mathematical models to APIs, web platforms and cloud deployment. Founder of **[GeoHydroAI](https://geohydroai.org/)**, hydrologist and PhD researcher, Python instructor at **Beetroot Academy**.
+I build end-to-end scientific and AI systems — from field measurements and mathematical models to APIs, web platforms and cloud deployment. Founder of **[GeoHydroAI](https://geohydroai.org/)**, hydrologist and PhD researcher, Python instructor at **Beetroot Academy**. [More about me →](https://geohydroai.org/about/viktor-nikoriak)
 
 <!-- 02 — Philosophy -->
-<img src="./assets/philosophy.svg" alt="TRUTH → TRUST → TOOL. From physical evidence to verified knowledge and practical tools." width="100%">
+<p align="center">
+<a href="https://geohydroai.org/about/viktor-nikoriak#research"><img src="./assets/philosophy-truth.svg" alt="TRUTH — Science &amp; data: hydrology, satellite observation, measurement" width="32%"></a>
+<a href="https://geohydroai.org/about/viktor-nikoriak#principle"><img src="./assets/philosophy-trust.svg" alt="TRUST — Verification &amp; reproducibility: validation, uncertainty, sourced answers, tests" width="32%"></a>
+<a href="https://geohydroai.org/platform"><img src="./assets/philosophy-tool.svg" alt="TOOL — Engineering &amp; application: platforms, APIs, automation, AI systems" width="32%"></a>
+</p>
+
+<p align="center"><a href="https://geohydroai.org/about/viktor-nikoriak#principle"><em>From physical evidence to verified knowledge and practical tools.</em></a></p>
 
 ## Selected work
 
@@ -28,6 +34,7 @@ Also: **[GeoHydroAI Knowledge Graph](https://github.com/NikoriakViktot/geohydroa
 - **Nikoriak, V. V., Osypov, V. V., & Osadcha, N. M. (2026).** *Validation of global elevation models using ICESat-2 LiDAR data for floodplain modeling in the Ukrainian Carpathians.* [doi:10.24028/gj.v48i2.346831](https://doi.org/10.24028/gj.v48i2.346831)
 - *A High-Resolution Hydrological Dataset for Ukrainian River Basins With an Interactive Web Interface* (2025), **Geoscience Data Journal**. [doi:10.1002/gdj3.70027](https://doi.org/10.1002/gdj3.70027)
 - PhD research at the Ukrainian Hydrometeorological Institute; project supported by the **German Federal Environmental Foundation (DBU)** with the **Bavarian Environment Agency (LfU)** as partner.
+- All publications: [Google Scholar](https://scholar.google.com/citations?user=oPSQ_5wAAAAJ) · [ORCID](https://orcid.org/0009-0007-9934-4151) · [research overview](https://geohydroai.org/about/viktor-nikoriak#research)
 - Teaching Python at **Beetroot Academy** — [course materials](https://github.com/NikoriakViktot/PY-Course-Victor-Nikoriak-22-09-2026).
 
 ## Stack
@@ -44,6 +51,6 @@ Also: **[GeoHydroAI Knowledge Graph](https://github.com/NikoriakViktot/geohydroa
 
 <div align="center">
 
-**[geohydroai.org](https://geohydroai.org/)** · **[LinkedIn](https://www.linkedin.com/in/viktor-nikoriak-328404203/)** · **[ORCID](https://orcid.org/0009-0007-9934-4151)**
+**[geohydroai.org](https://geohydroai.org/)** · **[About](https://geohydroai.org/about/viktor-nikoriak)** · **[Google Scholar](https://scholar.google.com/citations?user=oPSQ_5wAAAAJ)** · **[LinkedIn](https://www.linkedin.com/in/viktor-nikoriak-328404203/)** · **[ORCID](https://orcid.org/0009-0007-9934-4151)**
 
 </div>

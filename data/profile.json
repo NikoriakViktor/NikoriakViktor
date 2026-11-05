@@ -13,17 +13,20 @@
       {
         "word": "TRUTH",
         "label": "Science & data",
-        "note": "hydrology · satellite observation · measurement"
+        "note": "hydrology · satellite observation · measurement",
+        "cta": "Research →"
       },
       {
         "word": "TRUST",
         "label": "Verification & reproducibility",
-        "note": "validation · uncertainty · sourced answers · tests"
+        "note": "validation · uncertainty · sourced answers · tests",
+        "cta": "The principle →"
       },
       {
         "word": "TOOL",
         "label": "Engineering & application",
-        "note": "platforms · APIs · automation · AI systems"
+        "note": "platforms · APIs · automation · AI systems",
+        "cta": "Platform →"
       }
     ],
     "caption": "From physical evidence to verified knowledge and practical tools."
@@ -78,5 +81,6 @@
       "stack": "Python · Git · Code review",
       "cta": "Course materials →"
     }
-  ]
+  ],
+  "hero_cta": "About me →"
 }

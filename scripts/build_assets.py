@@ -187,38 +187,33 @@ def hero(p: dict) -> str:
         text(p["focus"], 64, 226, 16, C["muted"]),
         f'<line x1="64" y1="258" x2="560" y2="258" stroke="{C["border"]}"/>',
         tags,
+        text(p["hero_cta"], 1136, 292, 15, C["accent"], weight=700, anchor="end"),
     ])
     return svg_doc(w, h, f'{p["name"]} - {p["role"]}. {p["focus"]}', body)
 
 
 # ---------------------------------------------------------------- philosophy
 
-def philosophy(p: dict) -> str:
-    w, h = 1200, 210
-    ph = p["philosophy"]
-    xs = [200, 600, 1000]
-    parts = []
-    for x, step in zip(xs, ph["steps"]):
-        check_fits(step["note"], 12.5, 340)
-        parts += [
-            text(step["word"], x, 78, 40, C["text"], weight=800, anchor="middle", ls=6),
-            text(step["label"], x, 108, 15, C["accent"], weight=500, anchor="middle"),
-            text(step["note"], x, 132, 12.5, C["faint"], anchor="middle"),
-        ]
-    for x1, x2 in ((xs[0], xs[1]), (xs[1], xs[2])):
-        a, b = x1 + 110, x2 - 110
+def philosophy_tile(step: dict, last: bool) -> str:
+    """One step of TRUTH → TRUST → TOOL, its own image so it can carry its own link."""
+    w, h = 400, 190
+    cx = 185
+    check_fits(step["note"], 12.5, 360)
+    parts = [
+        frame(w, h, C["bg"]),
+        text(step["word"], cx, 76, 40, C["text"], weight=800, anchor="middle", ls=6),
+        text(step["label"], cx, 106, 15, C["accent"], weight=500, anchor="middle"),
+        text(step["note"], cx, 130, 12.5, C["faint"], anchor="middle"),
+        text(step["cta"], cx, 166, 13, C["accent"], weight=700, anchor="middle"),
+    ]
+    if not last:
+        a, b = 336, 384
         parts.append(
-            f'<line x1="{a}" y1="64" x2="{b}" y2="64" stroke="{C["accent"]}" stroke-width="1.5"/>'
-            f'<path d="M{b - 9},58 L{b},64 L{b - 9},70" fill="none" stroke="{C["accent"]}" '
+            f'<line x1="{a}" y1="62" x2="{b}" y2="62" stroke="{C["accent"]}" stroke-width="1.5"/>'
+            f'<path d="M{b - 9},56 L{b},62 L{b - 9},68" fill="none" stroke="{C["accent"]}" '
             f'stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>'
         )
-    body = "\n".join([
-        frame(w, h, C["bg"]),
-        *parts,
-        f'<line x1="450" y1="160" x2="750" y2="160" stroke="{C["border"]}"/>',
-        text(ph["caption"], 600, 188, 16, C["muted"], anchor="middle"),
-    ])
-    return svg_doc(w, h, "TRUTH → TRUST → TOOL. " + ph["caption"], body)
+    return svg_doc(w, h, f'{step["word"]} - {step["label"]}: {step["note"]}', "\n".join(parts))
 
 
 # ---------------------------------------------------------------- cards
@@ -270,7 +265,9 @@ def main() -> None:
     profile = json.loads(DATA.read_text(encoding="utf-8"))
     OUT.mkdir(exist_ok=True)
     write("hero.svg", hero(profile))
-    write("philosophy.svg", philosophy(profile))
+    steps = profile["philosophy"]["steps"]
+    for i, step in enumerate(steps):
+        write(f"philosophy-{step['word'].lower()}.svg", philosophy_tile(step, i == len(steps) - 1))
     for item in profile["cards"]:
         write(f"card-{item['id']}.svg", card(item))
 
