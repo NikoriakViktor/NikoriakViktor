@@ -1,0 +1,82 @@
+{
+  "name": "Viktor Nikoriak",
+  "kicker": "RESEARCH × ENGINEERING · UKRAINE",
+  "role": "Research Software Engineer",
+  "focus": "Full-Stack Development · AI/ML · GeoAI · Scientific Computing",
+  "hero_tags": [
+    "01  GeoHydroAI",
+    "02  AI Systems",
+    "03  Research"
+  ],
+  "philosophy": {
+    "steps": [
+      {
+        "word": "TRUTH",
+        "label": "Science & data",
+        "note": "hydrology · satellite observation · measurement"
+      },
+      {
+        "word": "TRUST",
+        "label": "Verification & reproducibility",
+        "note": "validation · uncertainty · sourced answers · tests"
+      },
+      {
+        "word": "TOOL",
+        "label": "Engineering & application",
+        "note": "platforms · APIs · automation · AI systems"
+      }
+    ],
+    "caption": "From physical evidence to verified knowledge and practical tools."
+  },
+  "cards": [
+    {
+      "id": "geohydroai",
+      "index": "01",
+      "kicker": "GEOSPATIAL PLATFORM",
+      "title": "GeoHydroAI",
+      "lines": [
+        "Earth observation, hydrological models",
+        "and flood-risk scenarios in one web platform."
+      ],
+      "stack": "Python · TypeScript · React · FastAPI · PostGIS",
+      "cta": "Live platform →",
+      "logo": "assets/geohydroai-logo.png"
+    },
+    {
+      "id": "ai-systems",
+      "index": "02",
+      "kicker": "AI SYSTEMS",
+      "title": "Model Runtime",
+      "lines": [
+        "LLM inference, orchestration and evaluation",
+        "across local and GPU-hosted environments."
+      ],
+      "stack": "FastAPI · vLLM · MLflow · Redis · Docker",
+      "cta": "Repository →"
+    },
+    {
+      "id": "research",
+      "index": "03",
+      "kicker": "RESEARCH",
+      "title": "DEM Validation & Floods",
+      "lines": [
+        "ICESat-2 LiDAR, elevation models and",
+        "flood modelling in the Ukrainian Carpathians."
+      ],
+      "stack": "ICESat-2 · Sentinel · HEC-RAS · GR4J",
+      "cta": "Publications →"
+    },
+    {
+      "id": "teaching",
+      "index": "04",
+      "kicker": "TEACHING & MENTORING",
+      "title": "Beetroot Academy",
+      "lines": [
+        "Python fundamentals, algorithms, Git",
+        "and project-based learning."
+      ],
+      "stack": "Python · Git · Code review",
+      "cta": "Course materials →"
+    }
+  ]
+}
