@@ -48,7 +48,7 @@ Water is mapped from SAR backscatter and kept only where it is physically plausi
 
 > backscatter below the Otsu threshold **and** slope < 8° **and** height above nearest drainage (HAND) < 25 m
 
-The test case is the **June 2020 flood in Bukovyna**: 6 Sentinel-1 scenes from 11–13 June over a 1,570 km² basin.
+The study case is the **June 2020 flood in Bukovyna** (peak 22–25 June), over a 1,570 km² basin. The pipeline was built and tested on 6 Sentinel-1 scenes from **11–13 June 2020, before the flood peak**. These serve as the pre-flood reference. Processing the scenes from the flood itself and checking them against official flood maps is the next step. No flood-extent accuracy is claimed yet.
 
 ```mermaid
 flowchart LR
@@ -64,11 +64,11 @@ Engineered as a service rather than a notebook: 6 Docker services, Redis job que
 
 ### Hydrological and hydraulic modelling
 
-- Rainfall–runoff: CemaNeige-GR4J / GR4H (airGR)
-- Hydraulics: HEC-RAS
-- Screening with HAND
+- Rainfall–runoff: CemaNeige-GR4J / GR4H (airGR). Runs in [GeoHydroAI](./engineering.md#01--geohydroai--geospatial-platform).
+- Screening with HAND. Live on the [public flood map](https://geohydroai.org/flood-map).
+- Hydraulics: HEC-RAS on priority reaches. Integration into the platform is in development.
 
-All three run inside [GeoHydroAI](./engineering.md#01--geohydroai--geospatial-platform) on records from ≈600 gauging posts covering 1921–2025.
+The platform's observation archive covers ≈600 gauging posts, 1921–2025.
 
 ---
 

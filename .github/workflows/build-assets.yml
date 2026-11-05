@@ -6,13 +6,16 @@ on:
     paths:
       - "data/**"
       - "scripts/**"
+  pull_request:
   workflow_dispatch:
 
 permissions:
   contents: write
 
 jobs:
-  build:
+  # On pull requests: rebuild and fail if committed SVGs are stale; check links. Never commits.
+  check:
+    if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -21,6 +24,22 @@ jobs:
           python-version: "3.12"
       - run: pip install -r scripts/requirements.txt
       - run: python scripts/build_assets.py
+      - name: SVGs must match data/profile.json
+        run: git diff --exit-code -- assets || (echo "Run python scripts/build_assets.py and commit assets/"; exit 1)
+      - run: python scripts/check_links.py
+
+  # On main: rebuild and commit regenerated SVGs.
+  build:
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r scripts/requirements.txt
+      - run: python scripts/build_assets.py
+      - run: python scripts/check_links.py
       - name: Commit regenerated SVGs
         run: |
           if git diff --quiet -- assets; then

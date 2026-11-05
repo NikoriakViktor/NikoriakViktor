@@ -10,11 +10,11 @@
 
 **[geohydroai.org](https://geohydroai.org/)** · bilingual (EN/UA) · in production
 
-A flood platform for Ukrainian river basins: hazard screening, hydrological and hydraulic modelling, risk assessment, resilience planning and evidence validation. It is built on terrain corrected with FABDEM and ICESat-2, HAND screening and HEC-RAS runs.
+A flood platform for Ukrainian river basins: hazard screening, hydrological modelling, risk assessment, resilience planning and evidence validation. It is built on FABDEM terrain checked against ICESat-2 and on HAND screening. HEC-RAS hydraulic runs are being integrated.
 
 **What users get**
 
-- **[Public flood map](https://geohydroai.org/flood-map)** with no sign-in: HAND mask, HEC-RAS and official flood layers.
+- **[Public flood map](https://geohydroai.org/flood-map)** with no sign-in: HAND screening mask, official flood-risk maps, and the status of HEC-RAS modelling on priority reaches.
 - **Five workspace modes:** screening, hazard, risk, resilience and evidence. Projects have roles, saved pages and scenario share links.
 - **Rainfall–runoff runs** with CemaNeige-GR4J (daily) and GR4H (hourly) via airGR.
 - **A knowledge bot that answers only from the research base.** Every sentence cites evidence, unsupported sentences are removed, and numbers and DOIs are protected so the model cannot alter them.
@@ -47,7 +47,7 @@ flowchart LR
 | Django never stores observations; it caches gauge cards. | The hydro service stays the data of record. If it is down, reads return `available: false` instead of failing. |
 | Optimistic concurrency on pages (ETag / If-Match → 409). | Two people editing one page can't overwrite each other. |
 | Versioned, immutable tiles; pre-simplified geometry at small scales. | Network time dominated. Caching and simplification cut it the most. |
-| Integrate validated models (airGR, HEC-RAS, WhiteboxTools), don't re-implement physics. Heavy compute runs as isolated Docker jobs. | Scientific credibility on a 2 vCPU / 8 GB server. |
+| Integrate validated models (airGR, HEC-RAS, WhiteboxTools), don't re-implement physics. Heavy compute runs as isolated Docker jobs. | Scientific credibility on a small shared server, without heavy jobs slowing the API. |
 | National DEM-error map on H3 hexagons, precomputed. | Fast country-wide view of DEM vs ICESat-2 error. |
 
 **Results**
@@ -62,7 +62,14 @@ flowchart LR
   - Backend: ≈700 tests
 - **Delivery:** release directories switched by symlink, 10 kept for instant rollback, smoke tests after every deploy, CI on self-hosted runners.
 
-**In progress:** geoprocessing service; evacuation plans in the Response lab; design flow at ungauged outlets.
+**Status, kept explicit on purpose:**
+
+| Shipped | In development |
+| :--- | :--- |
+| Public flood map, HAND screening, official flood-risk maps | HEC-RAS runs served by the API (map time player is empty until then) |
+| Projects, roles, saved pages, scenario sharing | Geoprocessing service |
+| GR4J / GR4H runoff runs | Evacuation plans in the Response lab |
+| ICESat-2 DEM-error hexagons, gauges | Design flow at ungauged outlets |
 
 `React 19` `TypeScript` `deck.gl` `MapLibre` `Django 5` `DRF` `Celery` `PostGIS` `FastAPI` `DuckDB` `H3` `Docker` `nginx`
 
@@ -115,7 +122,7 @@ flowchart LR
 
 ## 03 / Knowledge Graph — scientific AI
 
-**[github.com/NikoriakViktot/geohydroai-knowledge-graph](https://github.com/NikoriakViktot/geohydroai-knowledge-graph)** · MIT
+**[github.com/NikoriakViktot/geohydroai-knowledge-graph](https://github.com/NikoriakViktot/geohydroai-knowledge-graph)** · AGPL-3.0
 
 A pipeline that turns thousands of research papers on hydrology, flood mapping and remote sensing into searchable knowledge. It extracts structure, references, methods, sensors, study areas and numeric results from tables, then loads them into a citation graph and a vector index. Research questions are answered with sources.
 
@@ -146,7 +153,7 @@ flowchart LR
 | Embedded ChromaDB, with a stated move to Qdrant above ~5 M chunks. | Simple, persistent, filterable; the scaling limit is known in advance. |
 | Neo4j writes only through `MERGE`. | Re-running the pipeline is safe: no accidental deletes, no duplicates. |
 
-**Results** (corpus snapshot, June 2026)
+**Results** (corpus snapshot of 9 June 2026, from the project's audit docs)
 
 - ≈3,900 PDFs parsed; **986,832 chunks** indexed from about 3,700 papers.
 - **57,603 graph nodes** and **92,003 citation edges**.

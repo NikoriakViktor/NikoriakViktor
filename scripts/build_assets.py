@@ -227,44 +227,45 @@ def corner_relief(seed: float, w: int = 600, h: int = 230, cx: float = 560) -> l
 
 
 def card(item: dict) -> str:
-    w, h = 600, 230
+    """Wide project card, one per row, so text stays readable on phones."""
+    w, h = 1200, 190
     has_logo = bool(item.get("logo"))
-    text_max = 390 if has_logo else 528
+    right = 1160
+    stack_w = text_width(item["stack"], 16, family="mono")
+    text_max = (760 if has_logo else right - 40) - 48
     for line in item["lines"]:
-        check_fits(line, 18, text_max)
-    check_fits(item["title"], 30, text_max, weight=700)
+        check_fits(line, 21, min(text_max, right - stack_w - 88))
+    check_fits(item["title"], 40, text_max, weight=700)
 
     if has_logo:
         png = base64.b64encode((ROOT / item["logo"]).read_bytes()).decode()
-        motif = (f'<image x="432" y="14" width="150" height="150" '
+        motif = (f'<image x="770" y="20" width="150" height="150" '
                  f'href="data:image/png;base64,{png}"/>')
     else:
-        motif = relief_paths(corner_relief(float(item["index"])))
+        motif = relief_paths(corner_relief(float(item["index"]), w, h, 1120))
 
-    lines = [text(line, 36, 122 + i * 27, 18, C["muted"]) for i, line in enumerate(item["lines"])]
-    cta_w = text_width(item["cta"], 15, weight=700)
-    check_fits(item["stack"], 13.5, 528 - cta_w - 20, family="mono")
+    lines = [text(line, 48, 132 + i * 30, 21, C["muted"]) for i, line in enumerate(item["lines"])]
     body = "\n".join([
         frame(w, h, C["panel"], motif),
-        mono(f'{item["index"]} / {item["kicker"]}', 36, 46, 13.5, C["accent"], weight=500, ls=2),
-        text(item["title"], 36, 88, 30, C["text"], weight=700),
+        mono(f'{item["index"]} / {item["kicker"]}', 48, 48, 16, C["accent"], weight=500, ls=2.5),
+        text(item["title"], 46, 96, 40, C["text"], weight=700),
         *lines,
-        mono(item["stack"], 36, 204, 13.5, C["muted"]),
-        text(item["cta"], 564, 204, 15, C["accent"], weight=700, anchor="end"),
+        text(item["cta"], right, 96, 21, C["accent"], weight=700, anchor="end"),
+        mono(item["stack"], right, 162, 16, C["muted"], anchor="end"),
     ])
     return svg_doc(w, h, f'{item["index"]} / {item["title"]} - {" ".join(item["lines"])}', body)
 
 
 def strip(item: dict) -> str:
     """Full-width, low card for secondary work (teaching)."""
-    w, h = 1200, 120
+    w, h = 1200, 130
     motif = relief_paths(corner_relief(5.0, w, h, 1160))
     body = "\n".join([
         frame(w, h, C["panel"], motif),
-        mono(item["kicker"], 36, 46, 13.5, C["accent"], weight=500, ls=2),
-        text(item["title"], 36, 88, 28, C["text"], weight=700),
-        text(item["line"], 400, 88, 18, C["muted"]),
-        text(item["cta"], 1164, 88, 16, C["accent"], weight=700, anchor="end"),
+        mono(item["kicker"], 48, 48, 16, C["accent"], weight=500, ls=2.5),
+        text(item["title"], 46, 96, 36, C["text"], weight=700),
+        text(item["line"], 440, 96, 21, C["muted"]),
+        text(item["cta"], 1160, 96, 21, C["accent"], weight=700, anchor="end"),
     ])
     return svg_doc(w, h, f'{item["title"]} - {item["line"]}', body)
 

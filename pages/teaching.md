@@ -6,7 +6,7 @@
 
 I teach Python from first principles to production. Students write code every lesson, submit it as pull requests and get line-by-line review, the same way engineering teams work.
 
-**Course materials:** [PY-Course-Victor-Nikoriak-22-09-2026](https://github.com/NikoriakViktot/PY-Course-Victor-Nikoriak-22-09-2026) — the autumn 2026 cohort
+**[Open the course book →](https://nikoriakviktot.github.io/PY-Course-Victor-Nikoriak-22-09-2026/)** · source: [PY-Course-Victor-Nikoriak-22-09-2026](https://github.com/NikoriakViktot/PY-Course-Victor-Nikoriak-22-09-2026) — the autumn 2026 cohort
 
 ---
 
