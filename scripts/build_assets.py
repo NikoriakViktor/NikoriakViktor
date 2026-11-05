@@ -155,14 +155,14 @@ def frame(w: int, h: int, fill: str, inner: str = "") -> str:
 # ---------------------------------------------------------------- hero
 
 def hero(p: dict) -> str:
-    w, h = 1200, 340
+    w, h = 1200, 280
     relief = relief_paths(isolines(w, h, [0.08 + 0.065 * i for i in range(15)]))
     rivers = [
-        ("M1200,40 C1080,90 1010,170 960,210 S840,260 760,250 S640,280 560,340", 2.4),
-        ("M1010,0 C1000,70 990,140 965,205", 1.4),
-        ("M1200,180 C1120,190 1060,215 1000,212", 1.4),
-        ("M850,340 C845,300 820,270 790,252", 1.2),
-        ("M640,215 C680,235 700,262 690,292", 1.0),
+        ("M1200,40 C1080,80 1010,150 960,180 S840,215 760,208 S640,235 560,280", 2.4),
+        ("M1010,0 C1000,60 990,120 965,176", 1.4),
+        ("M1200,160 C1120,168 1060,185 1000,182", 1.4),
+        ("M850,280 C845,250 820,225 790,210", 1.2),
+        ("M640,180 C680,198 700,220 690,250", 1.0),
     ]
     river_svg = "\n".join(
         f'<path d="{d}" fill="none" stroke="{C["accent"]}" stroke-width="{sw}" '
@@ -178,16 +178,16 @@ def hero(p: dict) -> str:
   <mask id="m"><rect width="{w}" height="{h}" fill="url(#fade)"/></mask>
 </defs>
 <g mask="url(#m)">{relief}{river_svg}</g>"""
-    tags = "".join(mono(tag, 64 + i * 170, 292, 14, C["muted"], ls=1) for i, tag in enumerate(p["hero_tags"]))
+    tags = "".join(mono(tag, 64 + i * 180, 246, 15, C["muted"], ls=1) for i, tag in enumerate(p["hero_tags"]))
     body = "\n".join([
         frame(w, h, C["bg"], inner),
-        mono(p["kicker"], 64, 84, 13, C["accent"], weight=500, ls=3),
-        text(p["name"], 62, 152, 58, C["text"], weight=800, ls=-0.5),
-        text(p["role"], 64, 194, 24, C["text"], weight=600),
-        text(p["focus"], 64, 226, 16, C["muted"]),
-        f'<line x1="64" y1="258" x2="560" y2="258" stroke="{C["border"]}"/>',
+        mono(p["kicker"], 64, 66, 14, C["accent"], weight=500, ls=3),
+        text(p["name"], 62, 126, 56, C["text"], weight=800, ls=-0.5),
+        text(p["role"], 64, 164, 25, C["text"], weight=600),
+        text(p["focus"], 64, 194, 18, C["muted"]),
+        f'<line x1="64" y1="216" x2="580" y2="216" stroke="{C["border"]}"/>',
         tags,
-        text(p["hero_cta"], 1136, 292, 15, C["accent"], weight=700, anchor="end"),
+        text(p["hero_cta"], 1136, 246, 16, C["accent"], weight=700, anchor="end"),
     ])
     return svg_doc(w, h, f'{p["name"]} - {p["role"]}. {p["focus"]}', body)
 
@@ -196,21 +196,21 @@ def hero(p: dict) -> str:
 
 def philosophy_tile(step: dict, last: bool) -> str:
     """One step of TRUTH → TRUST → TOOL, its own image so it can carry its own link."""
-    w, h = 400, 190
+    w, h = 400, 156
     cx = 185
-    check_fits(step["note"], 12.5, 360)
+    check_fits(step["note"], 15, 350)
     parts = [
         frame(w, h, C["bg"]),
-        text(step["word"], cx, 76, 40, C["text"], weight=800, anchor="middle", ls=6),
-        text(step["label"], cx, 106, 15, C["accent"], weight=500, anchor="middle"),
-        text(step["note"], cx, 130, 12.5, C["faint"], anchor="middle"),
-        text(step["cta"], cx, 166, 13, C["accent"], weight=700, anchor="middle"),
+        text(step["word"], cx, 60, 38, C["text"], weight=800, anchor="middle", ls=6),
+        text(step["label"], cx, 88, 17, C["accent"], weight=600, anchor="middle"),
+        text(step["note"], cx, 112, 15, C["muted"], anchor="middle"),
+        text(step["cta"], cx, 140, 15, C["accent"], weight=700, anchor="middle"),
     ]
     if not last:
         a, b = 336, 384
         parts.append(
-            f'<line x1="{a}" y1="62" x2="{b}" y2="62" stroke="{C["accent"]}" stroke-width="1.5"/>'
-            f'<path d="M{b - 9},56 L{b},62 L{b - 9},68" fill="none" stroke="{C["accent"]}" '
+            f'<line x1="{a}" y1="47" x2="{b}" y2="47" stroke="{C["accent"]}" stroke-width="1.5"/>'
+            f'<path d="M{b - 9},41 L{b},47 L{b - 9},53" fill="none" stroke="{C["accent"]}" '
             f'stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>'
         )
     return svg_doc(w, h, f'{step["word"]} - {step["label"]}: {step["note"]}', "\n".join(parts))
@@ -218,39 +218,55 @@ def philosophy_tile(step: dict, last: bool) -> str:
 
 # ---------------------------------------------------------------- cards
 
-def corner_relief(seed: float) -> list[str]:
+def corner_relief(seed: float, w: int = 600, h: int = 230, cx: float = 560) -> list[str]:
     """Small contour patch for the top-right corner of a card."""
     def field(x, y):
-        dx, dy = (x - 560) / 120, (y - 20) / 90
+        dx, dy = (x - cx) / 120, (y - 20) / 90
         return math.exp(-(dx * dx + dy * dy)) + 0.04 * math.sin(x / 19 + seed) + 0.03 * math.sin(y / 13 - seed)
-    return isolines(600, 230, [0.12 + 0.12 * i for i in range(7)], field, step=5)
+    return isolines(w, h, [0.12 + 0.12 * i for i in range(7)], field, step=5)
 
 
 def card(item: dict) -> str:
     w, h = 600, 230
     has_logo = bool(item.get("logo"))
-    text_max = 380 if has_logo else 470
+    text_max = 390 if has_logo else 528
     for line in item["lines"]:
-        check_fits(line, 16, text_max)
-    check_fits(item["title"], 28, text_max, weight=700)
+        check_fits(line, 18, text_max)
+    check_fits(item["title"], 30, text_max, weight=700)
 
     if has_logo:
         png = base64.b64encode((ROOT / item["logo"]).read_bytes()).decode()
-        motif = (f'<image x="428" y="18" width="150" height="150" '
+        motif = (f'<image x="432" y="14" width="150" height="150" '
                  f'href="data:image/png;base64,{png}"/>')
     else:
         motif = relief_paths(corner_relief(float(item["index"])))
 
-    lines = [text(line, 36, 118 + i * 24, 16, C["muted"]) for i, line in enumerate(item["lines"])]
+    lines = [text(line, 36, 122 + i * 27, 18, C["muted"]) for i, line in enumerate(item["lines"])]
+    cta_w = text_width(item["cta"], 15, weight=700)
+    check_fits(item["stack"], 13.5, 528 - cta_w - 20, family="mono")
     body = "\n".join([
         frame(w, h, C["panel"], motif),
-        mono(f'{item["index"]} / {item["kicker"]}', 36, 48, 12, C["accent"], weight=500, ls=2),
-        text(item["title"], 36, 86, 28, C["text"], weight=700),
+        mono(f'{item["index"]} / {item["kicker"]}', 36, 46, 13.5, C["accent"], weight=500, ls=2),
+        text(item["title"], 36, 88, 30, C["text"], weight=700),
         *lines,
-        mono(item["stack"], 36, 200, 12, C["faint"]),
-        text(item["cta"], 564, 200, 14, C["accent"], weight=700, anchor="end"),
+        mono(item["stack"], 36, 204, 13.5, C["muted"]),
+        text(item["cta"], 564, 204, 15, C["accent"], weight=700, anchor="end"),
     ])
     return svg_doc(w, h, f'{item["index"]} / {item["title"]} - {" ".join(item["lines"])}', body)
+
+
+def strip(item: dict) -> str:
+    """Full-width, low card for secondary work (teaching)."""
+    w, h = 1200, 120
+    motif = relief_paths(corner_relief(5.0, w, h, 1160))
+    body = "\n".join([
+        frame(w, h, C["panel"], motif),
+        mono(item["kicker"], 36, 46, 13.5, C["accent"], weight=500, ls=2),
+        text(item["title"], 36, 88, 28, C["text"], weight=700),
+        text(item["line"], 400, 88, 18, C["muted"]),
+        text(item["cta"], 1164, 88, 16, C["accent"], weight=700, anchor="end"),
+    ])
+    return svg_doc(w, h, f'{item["title"]} - {item["line"]}', body)
 
 
 # ---------------------------------------------------------------- main
@@ -270,6 +286,7 @@ def main() -> None:
         write(f"philosophy-{step['word'].lower()}.svg", philosophy_tile(step, i == len(steps) - 1))
     for item in profile["cards"]:
         write(f"card-{item['id']}.svg", card(item))
+    write("card-teaching.svg", strip(profile["teaching"]))
 
 
 if __name__ == "__main__":

@@ -13,20 +13,20 @@
       {
         "word": "TRUTH",
         "label": "Science & data",
-        "note": "hydrology · satellite observation · measurement",
+        "note": "hydrology · satellites · measurement",
         "cta": "Research →"
       },
       {
         "word": "TRUST",
         "label": "Verification & reproducibility",
-        "note": "validation · uncertainty · sourced answers · tests",
+        "note": "validation · uncertainty · sources",
         "cta": "The principle →"
       },
       {
         "word": "TOOL",
         "label": "Engineering & application",
-        "note": "platforms · APIs · automation · AI systems",
-        "cta": "Platform →"
+        "note": "platforms · APIs · AI systems",
+        "cta": "Flood map →"
       }
     ],
     "caption": "From physical evidence to verified knowledge and practical tools."
@@ -39,48 +39,54 @@
       "title": "GeoHydroAI",
       "lines": [
         "Earth observation, hydrological models",
-        "and flood-risk scenarios in one web platform."
+        "and flood-risk scenarios in one platform."
       ],
-      "stack": "Python · TypeScript · React · FastAPI · PostGIS",
+      "stack": "React · FastAPI · PostGIS",
       "cta": "Live platform →",
       "logo": "assets/geohydroai-logo.png"
     },
     {
-      "id": "ai-systems",
+      "id": "model-runtime",
       "index": "02",
-      "kicker": "AI SYSTEMS",
+      "kicker": "AI INFRASTRUCTURE",
       "title": "Model Runtime",
       "lines": [
         "LLM inference, orchestration and evaluation",
-        "across local and GPU-hosted environments."
+        "on local and GPU-hosted environments."
       ],
-      "stack": "FastAPI · vLLM · MLflow · Redis · Docker",
+      "stack": "FastAPI · vLLM · MLflow · Redis",
+      "cta": "Repository →"
+    },
+    {
+      "id": "knowledge-graph",
+      "index": "03",
+      "kicker": "SCIENTIFIC AI",
+      "title": "Knowledge Graph",
+      "lines": [
+        "Literature parsing, embeddings and citation",
+        "graphs for evidence-grounded answers."
+      ],
+      "stack": "GROBID · ChromaDB · Neo4j",
       "cta": "Repository →"
     },
     {
       "id": "research",
-      "index": "03",
-      "kicker": "RESEARCH",
-      "title": "DEM Validation & Floods",
-      "lines": [
-        "ICESat-2 LiDAR, elevation models and",
-        "flood modelling in the Ukrainian Carpathians."
-      ],
-      "stack": "ICESat-2 · Sentinel · HEC-RAS · GR4J",
-      "cta": "Publications →"
-    },
-    {
-      "id": "teaching",
       "index": "04",
-      "kicker": "TEACHING & MENTORING",
-      "title": "Beetroot Academy",
+      "kicker": "APPLIED RESEARCH",
+      "title": "DEM & Floods",
       "lines": [
-        "Python fundamentals, algorithms, Git",
-        "and project-based learning."
+        "ICESat-2 LiDAR validation of elevation models",
+        "for flood modelling in the Carpathians."
       ],
-      "stack": "Python · Git · Code review",
-      "cta": "Course materials →"
+      "stack": "ICESat-2 · Sentinel · HEC-RAS",
+      "cta": "Research →"
     }
   ],
-  "hero_cta": "About me →"
+  "hero_cta": "About me →",
+  "teaching": {
+    "kicker": "TEACHING & MENTORING",
+    "title": "Beetroot Academy",
+    "line": "Python education · algorithms · Git · code review",
+    "cta": "Course materials →"
+  }
 }
