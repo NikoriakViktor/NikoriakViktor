@@ -42,13 +42,13 @@ flowchart LR
 
 *Work in progress, not yet published.*
 
-### Flood extent from Sentinel-1 radar
+### Flood extent from Sentinel-1 radar — Kakhovka dam breach
+
+Rapid satellite mapping of the inundation and its impacts after the **Kakhovka dam was destroyed on 6 June 2023**. Radar sees through cloud and works day and night, which is what a rapid response needs.
 
 Water is mapped from SAR backscatter and kept only where it is physically plausible:
 
 > backscatter below the Otsu threshold **and** slope < 8° **and** height above nearest drainage (HAND) < 25 m
-
-The study case is the **June 2020 flood in Bukovyna** (peak 22–25 June), over a 1,570 km² basin. The pipeline was built and tested on 6 Sentinel-1 scenes from **11–13 June 2020, before the flood peak**. These serve as the pre-flood reference. Processing the scenes from the flood itself and checking them against official flood maps is the next step. No flood-extent accuracy is claimed yet.
 
 ```mermaid
 flowchart LR
