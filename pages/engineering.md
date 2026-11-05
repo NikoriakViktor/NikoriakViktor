@@ -77,7 +77,7 @@ flowchart LR
 
 ## 02 / Model Runtime — AI infrastructure
 
-**[github.com/NikoriakViktot/model-runtime](https://github.com/NikoriakViktot/model-runtime)** · MIT · experimental
+**[github.com/NikoriakViktor/model-runtime](https://github.com/NikoriakViktor/model-runtime)** · MIT · experimental
 
 A self-hosted control layer for open-weight LLMs. It starts and stops models on demand, either vLLM on GPU or llama.cpp on CPU, and places them on GPUs. They are served through one OpenAI-compatible gateway, and training and evaluation runs are tracked as versioned contracts.
 
@@ -122,7 +122,7 @@ flowchart LR
 
 ## 03 / Knowledge Graph — scientific AI
 
-**[github.com/NikoriakViktot/geohydroai-knowledge-graph](https://github.com/NikoriakViktot/geohydroai-knowledge-graph)** · AGPL-3.0
+**[github.com/NikoriakViktor/geohydroai-knowledge-graph](https://github.com/NikoriakViktor/geohydroai-knowledge-graph)** · AGPL-3.0
 
 A pipeline that turns thousands of research papers on hydrology, flood mapping and remote sensing into searchable knowledge. It extracts structure, references, methods, sensors, study areas and numeric results from tables, then loads them into a citation graph and a vector index. Research questions are answered with sources.
 

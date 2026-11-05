@@ -13,14 +13,14 @@ I build end-to-end scientific and AI systems — from field measurements and mat
 ## Selected engineering & research
 
 <a href="https://geohydroai.org/"><img src="./assets/card-geohydroai.svg" alt="01 / Geospatial platform — GeoHydroAI: Earth observation, hydrological models and flood-risk scenarios in one platform" width="100%"></a>
-<a href="https://github.com/NikoriakViktot/model-runtime"><img src="./assets/card-model-runtime.svg" alt="02 / AI infrastructure — Model Runtime: LLM inference, orchestration and evaluation" width="100%"></a>
-<a href="https://github.com/NikoriakViktot/geohydroai-knowledge-graph"><img src="./assets/card-knowledge-graph.svg" alt="03 / Scientific AI — Knowledge Graph: literature parsing, embeddings and citation graphs for evidence-grounded answers" width="100%"></a>
+<a href="https://github.com/NikoriakViktor/model-runtime"><img src="./assets/card-model-runtime.svg" alt="02 / AI infrastructure — Model Runtime: LLM inference, orchestration and evaluation" width="100%"></a>
+<a href="https://github.com/NikoriakViktor/geohydroai-knowledge-graph"><img src="./assets/card-knowledge-graph.svg" alt="03 / Scientific AI — Knowledge Graph: literature parsing, embeddings and citation graphs for evidence-grounded answers" width="100%"></a>
 <a href="./pages/research.md"><img src="./assets/card-research.svg" alt="04 / Applied research — DEM validation with ICESat-2 LiDAR for flood modelling in the Carpathians" width="100%"></a>
 <a href="./pages/teaching.md"><img src="./assets/card-teaching.svg" alt="Teaching &amp; mentoring — Beetroot Academy: Python education, algorithms, Git, code review" width="100%"></a>
 
 - **[GeoHydroAI](https://geohydroai.org/)** — bilingual flood platform for Ukrainian river basins: public flood map, HAND screening, GR4J/GR4H runoff runs, evidence-cited knowledge bot.
-- **[Model Runtime](https://github.com/NikoriakViktot/model-runtime)** — self-hosted control layer for open-weight LLMs: on-demand vLLM / llama.cpp, one OpenAI-compatible gateway, 338 tests.
-- **[Knowledge Graph](https://github.com/NikoriakViktot/geohydroai-knowledge-graph)** — research PDFs → Neo4j citation graph + vector index; ~987k chunks, 57k nodes (June 2026 snapshot).
+- **[Model Runtime](https://github.com/NikoriakViktor/model-runtime)** — self-hosted control layer for open-weight LLMs: on-demand vLLM / llama.cpp, one OpenAI-compatible gateway, 338 tests.
+- **[Knowledge Graph](https://github.com/NikoriakViktor/geohydroai-knowledge-graph)** — research PDFs → Neo4j citation graph + vector index; ~987k chunks, 57k nodes (June 2026 snapshot).
 - **[DEM & Floods](./pages/research.md)** — where global elevation models fail and how that changes flood maps.
 - **[Teaching](./pages/teaching.md)** — 52-lesson Python course with PR-based code review · [course book](https://nikoriakviktot.github.io/PY-Course-Victor-Nikoriak-22-09-2026/).
 
