@@ -88,5 +88,25 @@
     "title": "Beetroot Academy",
     "line": "Python education · algorithms · Git · code review",
     "cta": "Course materials →"
-  }
+  },
+  "pages": [
+    {
+      "id": "engineering",
+      "kicker": "VIKTOR NIKORIAK · ENGINEERING",
+      "title": "Engineering",
+      "subtitle": "Systems I design, build and run — from data model to deployment."
+    },
+    {
+      "id": "research",
+      "kicker": "VIKTOR NIKORIAK · RESEARCH",
+      "title": "Research",
+      "subtitle": "Floods, terrain and satellite data in the Ukrainian Carpathians."
+    },
+    {
+      "id": "teaching",
+      "kicker": "VIKTOR NIKORIAK · TEACHING",
+      "title": "Teaching & Mentoring",
+      "subtitle": "Python foundations through practice, review and real projects."
+    }
+  ]
 }

@@ -269,6 +269,20 @@ def strip(item: dict) -> str:
     return svg_doc(w, h, f'{item["title"]} - {item["line"]}', body)
 
 
+def page_header(item: dict) -> str:
+    """Banner for pages/*.md — same relief and type as the profile hero, lower."""
+    w, h = 1200, 150
+    check_fits(item["subtitle"], 18, 700)
+    motif = relief_paths(corner_relief(len(item["title"]), w, h, 1100))
+    body = "\n".join([
+        frame(w, h, C["bg"], motif),
+        mono(item["kicker"], 48, 50, 13.5, C["accent"], weight=500, ls=3),
+        text(item["title"], 46, 98, 40, C["text"], weight=800, ls=-0.3),
+        text(item["subtitle"], 48, 128, 18, C["muted"]),
+    ])
+    return svg_doc(w, h, f'{item["title"]} - {item["subtitle"]}', body)
+
+
 # ---------------------------------------------------------------- main
 
 def write(name: str, content: str) -> None:
@@ -287,6 +301,8 @@ def main() -> None:
     for item in profile["cards"]:
         write(f"card-{item['id']}.svg", card(item))
     write("card-teaching.svg", strip(profile["teaching"]))
+    for page in profile.get("pages", []):
+        write(f"page-{page['id']}.svg", page_header(page))
 
 
 if __name__ == "__main__":
