@@ -2,7 +2,7 @@
 
 [← Back to profile](../README.md) · [Research](./research.md) · [Teaching](./teaching.md)
 
-**On this page:** [GeoHydroAI](#01--geohydroai--geospatial-platform) · [Model Runtime](#02--model-runtime--ai-infrastructure) · [Knowledge Graph](#03--knowledge-graph--scientific-ai)
+**On this page:** [GeoHydroAI](#01--geohydroai--geospatial-platform) · [Model Runtime](#02--model-runtime--ai-infrastructure) · [GeoHydroAI Knowledge](#03--geohydroai-knowledge--scientific-ai)
 
 ---
 
@@ -120,11 +120,29 @@ flowchart LR
 
 ---
 
-## 03 / Knowledge Graph — scientific AI
+## 03 / GeoHydroAI Knowledge — scientific AI
 
-**[github.com/NikoriakViktor/geohydroai-knowledge-graph](https://github.com/NikoriakViktor/geohydroai-knowledge-graph)** · AGPL-3.0
+**Chat on [geohydroai.org](https://geohydroai.org/flood-map)** · open to guests · source code private
 
-A pipeline that turns thousands of research papers on hydrology, flood mapping and remote sensing into searchable knowledge. It extracts structure, references, methods, sensors, study areas and numeric results from tables, then loads them into a citation graph and a vector index. Research questions are answered with sources.
+A research chat about floods, hydrology, terrain and satellite data. It answers only from the GeoHydroAI knowledge base: about 7,000 research papers, the numbers from their tables, and a knowledge graph of methods, sensors and data. It does not use the internet or the model's general knowledge.
+
+**How an answer is made**
+
+1. **RAG search** finds the closest passages, figure captions and tables in the papers.
+2. **The knowledge graph** adds related methods and numeric facts.
+3. **A language model** (Claude, or another model chosen in the chat) writes the answer from this evidence only. It cannot change numbers or DOIs.
+4. **The server checks every sentence.** A sentence with no link to the evidence, or with a number the evidence does not contain, is removed.
+
+**What users get**
+
+- **A citation on every sentence.** Clicking `[1]` shows the paper's title, year, page, the passage and its DOI. Under the answer: a list of sources and the answer's limitations.
+- **Four answer styles:** plain language, scientific, practical, and critical review (what is established, where studies disagree, what the evidence does not say).
+- **Explanations built into the map.** Each map layer and gauge card has an "Ask the bot" button that explains what the layer shows, how it is computed and where it stops being valid, with links to papers.
+- **Sign-in and history.** Guests get 5 questions a day. Signed-in users get no daily limit, a default style and saved conversations.
+- **"Report a mistake"** under every answer.
+- **Honest gaps.** "No evidence found" means the base has no support for a claim, not that the claim is false. The bot does not forecast floods and does not replace official warnings.
+
+**How it is built.** A pipeline turns research PDFs into structure, references, methods, sensors, study areas and numeric results from tables. These are loaded into a citation graph and a vector index.
 
 **Architecture**
 
@@ -139,8 +157,9 @@ flowchart LR
   E --> OA[OpenAlex enrichment]
   CH --> VX[(ChromaDB<br/>SPECTER2 vectors)]
   OA --> KG[(Neo4j<br/>citation and method graph)]
-  VX --> Q[Research query service<br/>answers with sources]
+  VX --> Q[Knowledge API<br/>retrieval · evidence check]
   KG --> Q
+  Q --> C[Chat on geohydroai.org<br/>cited answers]
 ```
 
 **Technical decisions**
@@ -153,7 +172,7 @@ flowchart LR
 | Embedded ChromaDB, with a stated move to Qdrant above ~5 M chunks. | Simple, persistent, filterable; the scaling limit is known in advance. |
 | Neo4j writes only through `MERGE`. | Re-running the pipeline is safe: no accidental deletes, no duplicates. |
 
-**Results** (corpus snapshot of 9 June 2026, from the project's audit docs)
+**Pipeline results** (corpus snapshot of 9 June 2026, from the project's audit docs; the base has grown since)
 
 - ≈3,900 PDFs parsed; **986,832 chunks** indexed from about 3,700 papers.
 - **57,603 graph nodes** and **92,003 citation edges**.

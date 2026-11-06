@@ -61,13 +61,13 @@
       "id": "knowledge-graph",
       "index": "03",
       "kicker": "SCIENTIFIC AI",
-      "title": "Knowledge Graph",
+      "title": "GeoHydroAI Knowledge",
       "lines": [
-        "Literature parsing, embeddings and citation",
-        "graphs for evidence-grounded answers."
+        "Research chat over ~7,000 papers: RAG search,",
+        "knowledge graph, every sentence cited."
       ],
-      "stack": "GROBID · ChromaDB · Neo4j",
-      "cta": "Repository →"
+      "stack": "RAG · Neo4j · Claude",
+      "cta": "Ask the bot →"
     },
     {
       "id": "research",
